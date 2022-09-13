@@ -71,7 +71,7 @@ const CreateProject = () => {
 						tooltip={{
 							title: 'Через запятую. Пример: ID,Имя,Телефон',
 						}}
-						name="base_header"
+						name="table_header_client"
 						rules={[{ required: true, message: 'Укажите заголовок таблицы!' }]}>
 						<Input />
 					</Form.Item>
@@ -81,7 +81,7 @@ const CreateProject = () => {
 						tooltip={{
 							title: 'Поля из таблицы в БД через запятую. Пример: id,name,number',
 						}}
-						name="base_row"
+						name="table_row_client"
 						rules={[{ required: true, message: 'Укажите строку таблицы!' }]}>
 						<Input />
 					</Form.Item>

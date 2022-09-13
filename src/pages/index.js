@@ -14,5 +14,7 @@ export { default as CreateUser } from './User/CreateUser';
 export { default as EditUser } from './User/EditUser';
 // Dashboard
 export { default as Dashboard } from './Dashboard/Dashboard';
+// Statistic
+export { default as StatisticPage } from './StatisticPage';
 // Auth
 export { default as Login } from './Auth/Login';

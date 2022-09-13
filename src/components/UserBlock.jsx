@@ -18,13 +18,7 @@ const UserBlock = ({ onLogout }) => {
 			{userName ? <span style={{ marginRight: 8, fontWeight: 600 }}>{userName}</span> : null}
 
 			<Dropdown overlay={menu} trigger={['click']}>
-				<Avatar
-					style={{
-						color: '#f56a00',
-						backgroundColor: '#fde3cf',
-					}}>
-					{userName ? userName[0] : '-'}
-				</Avatar>
+				<Avatar className="user-avatar">{userName ? userName[0] : '-'}</Avatar>
 			</Dropdown>
 		</>
 	);

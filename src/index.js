@@ -10,7 +10,7 @@ import ruRU from 'antd/lib/locale/ru_RU';
 import App from './App';
 
 axios.defaults.baseURL = 'http://localhost:8000/api';
-// axios.defaults.baseURL = 'http://admin.kolocall.com/api';
+// axios.defaults.baseURL = 'https://lk.kolocall.com/api';
 axios.defaults.withCredentials = true;
 axios.interceptors.response.use(
 	(response) => response,

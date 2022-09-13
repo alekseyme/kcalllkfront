@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Form, Input, Button, message, Select } from 'antd';
+import { Form, Button, message, Select } from 'antd';
 import axios from 'axios';
 import Loader from '../../components/Loader';
 
@@ -17,7 +17,7 @@ const EditProject = () => {
 			.get('/users')
 			.then(({ data }) => {
 				const newData = data.map((user) => {
-					return { label: user.name, value: user.id };
+					return { label: user.name, value: user.id, isadmin: user.isadmin };
 				});
 				setUsertList(newData);
 			})
@@ -51,7 +51,7 @@ const EditProject = () => {
 				message.success(data.message);
 				// history.push('/projects');
 			})
-			.catch((rsp) => {
+			.catch(() => {
 				message.error('Произошла ошибка');
 			})
 			.finally(() => setIsLoading(false));
@@ -79,37 +79,6 @@ const EditProject = () => {
 							onFinish={onFinish}
 							initialValues={initValues}
 							autoComplete="off">
-							<Form.Item
-								label="Имя"
-								name="name"
-								rules={[{ required: true, message: 'Введите имя!' }]}>
-								<Input />
-							</Form.Item>
-							<Form.Item
-								label="Таблица"
-								name="tablename"
-								rules={[{ required: true, message: 'Укажите таблицу!' }]}>
-								<Input />
-							</Form.Item>
-							<Form.Item
-								label="Заголовок таблицы"
-								tooltip={{
-									title: 'Через запятую. Пример: ID,Имя,Телефон',
-								}}
-								name="base_header"
-								rules={[{ required: true, message: 'Укажите заголовок таблицы!' }]}>
-								<Input />
-							</Form.Item>
-							<Form.Item
-								label="Строка таблицы"
-								tooltip={{
-									title: 'Поля из таблицы в БД через запятую. Пример: id,name,number',
-								}}
-								name="base_row"
-								rules={[{ required: true, message: 'Укажите строку таблицы!' }]}>
-								<Input />
-							</Form.Item>
-
 							<Form.Item label="Пользователи">
 								<Select
 									mode="multiple"
@@ -118,7 +87,9 @@ const EditProject = () => {
 									placeholder="Выбрать пользователей"
 									defaultValue={projectUser}
 									onChange={onChangeUsers}
-									options={userList}></Select>
+									options={userList.filter(
+										(user) => user.isadmin !== 1,
+									)}></Select>
 							</Form.Item>
 
 							<Button

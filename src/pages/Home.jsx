@@ -6,13 +6,13 @@ import {
 	Dashboard,
 	Project,
 	EditProject,
-	CreateProject,
 	EditUser,
 	CreateUser,
 	User,
 	EditManager,
 	CreateManager,
 	Manager,
+	StatisticPage,
 } from './index';
 import {
 	DesktopOutlined,
@@ -20,6 +20,7 @@ import {
 	UserOutlined,
 	UnorderedListOutlined,
 	ContactsOutlined,
+	BarChartOutlined,
 } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 
@@ -58,6 +59,9 @@ const Home = ({ onSuccessLogout }) => {
 					<Menu.Item key="/" icon={<DesktopOutlined />}>
 						<Link to="/">Обращения</Link>
 					</Menu.Item>
+					<Menu.Item key="/statistic" icon={<BarChartOutlined />}>
+						<Link to="/statistic">Детализация</Link>
+					</Menu.Item>
 					{
 						//Админ
 						isAdmin && (
@@ -93,6 +97,9 @@ const Home = ({ onSuccessLogout }) => {
 						<Route exact path="/">
 							<Main />
 						</Route>
+						<Route exact path="/statistic">
+							<StatisticPage />
+						</Route>
 
 						{
 							//Админ
@@ -106,9 +113,6 @@ const Home = ({ onSuccessLogout }) => {
 									</Route>
 									<Route exact path="/projects/:id/edit">
 										<EditProject />
-									</Route>
-									<Route exact path="/projects/create">
-										<CreateProject />
 									</Route>
 									<Route exact path="/users">
 										<User />

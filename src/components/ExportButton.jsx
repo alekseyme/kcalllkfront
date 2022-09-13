@@ -10,7 +10,7 @@ const ExportButton = ({ activeProject, searchParams }) => {
 	const fileExtension = '.xlsx';
 
 	const exportToExcel = (csvData) => {
-		const headerArr = activeProject.base_header.split(',');
+		const headerArr = activeProject.table_header_client.split(',');
 
 		const wb = XLSX.utils.book_new();
 		const ws = XLSX.utils.json_to_sheet([]);
@@ -25,7 +25,7 @@ const ExportButton = ({ activeProject, searchParams }) => {
 		const params = {
 			...searchParams,
 			project: activeProject.value,
-			fields: activeProject.base_row.split(','),
+			fields: activeProject.table_row_client.split(','),
 		};
 		axios
 			.post('/project/export', params)

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Statistic, Row, Col, Card } from 'antd';
+import { Statistic, Row, Col, Card, Alert } from 'antd';
 import { useSelector } from 'react-redux';
 
 const Dashboard = () => {
@@ -7,8 +7,27 @@ const Dashboard = () => {
 
 	const manager = userInfo.manager;
 
+	const minutes = (() => {
+		return Math.floor(Math.random() * 950) + 1;
+	})();
+
+	const onClose = (e) => {
+		console.log(e, 'I was closed.');
+	};
+
 	return (
 		<>
+			{minutes < 300 && (
+				<Alert
+					style={{ marginTop: 22 }}
+					message="Обращаем Ваше внимание!"
+					description="У вас осталось не так много минут. Рекомендуем пополнить счёт"
+					type="error"
+					closable
+					onClose={onClose}
+				/>
+			)}
+
 			<Row gutter={22} style={{ marginTop: 22 }}>
 				<Col span={6}>
 					<Card>
@@ -27,8 +46,8 @@ const Dashboard = () => {
 					<Card>
 						<Statistic
 							title="Остаток минут по тарифу"
-							value={432}
-							valueStyle={{ color: '#3f8600' }}
+							value={minutes}
+							valueStyle={{ color: minutes > 300 ? '#3f8600' : '#cf1322' }}
 							suffix="/ 1000"
 						/>
 					</Card>
@@ -40,7 +59,7 @@ const Dashboard = () => {
 				</Col>
 				<Col span={6}>
 					<Card>
-						<Statistic title="Звонков сегодня" value={34} />
+						<Statistic title="Звонков вчера" value={81} />
 					</Card>
 				</Col>
 			</Row>

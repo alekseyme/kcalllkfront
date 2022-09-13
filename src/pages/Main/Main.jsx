@@ -48,8 +48,8 @@ const Main = () => {
 						id: project.id,
 						value: project.tablename,
 						label: project.name,
-						base_header: project.base_header,
-						base_row: project.base_row,
+						table_header_client: project.table_header_client,
+						table_row_client: project.table_row_client,
 					};
 				});
 				dispatch(setProjectsList(projects));
@@ -116,8 +116,8 @@ const Main = () => {
 		dispatch(setProjectLoading(true));
 		resetSearch();
 
-		const headerArr = optionObj.base_header.split(',');
-		const rowArr = optionObj.base_row.split(',');
+		const headerArr = optionObj.table_header_client.split(',');
+		const rowArr = optionObj.table_row_client.split(',');
 
 		const tableCols = headerArr.map((col, i) => ({
 			title: col,
